@@ -49,11 +49,11 @@ let currentNumber = "";
 // })})
 
 function calculateResult(expression) {
-  let result = parseInt(expression[0], 10);  // Convert the first token to an integer
+  let result = parseFloat(expression[0], 10);  // Convert the first token to an integer
 
   for (let i = 1; i < expression.length; i += 2) {
     const operator = expression[i];
-    const operand = parseInt(expression[i + 1], 10);  // Convert the next token to an integer
+    const operand = parseFloat(expression[i + 1], 10);  // Convert the next token to an integer
     result = operate(result, operator, operand);}
   return result;
 }
@@ -65,8 +65,16 @@ opButtons.forEach(button => {
       display.textContent = calculateResult(seq);
       seq = [];
       currentNumber = "";
+    } else if (button.id === "delete") {
+      if (currentNumber.length > 0) {
+        currentNumber = currentNumber.substring(0,currentNumber.length-1);
+        display.textContent = currentNumber;
+      } else if (seq.length > 0) {
+        seq.pop(); // Remove the last element from the sequence
+        display.textContent = seq.join(" ");
+      }
     } else {
-      if (parseInt(button.textContent, 10) >= 0) {
+      if (parseFloat(button.textContent, 10) >= 0 || button.id==='.') {
         currentNumber += button.textContent;
         display.textContent = currentNumber;
       } else {

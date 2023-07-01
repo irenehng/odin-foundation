@@ -3,17 +3,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: darkgreen;
+  background-color: burlywood;
   padding: 30px;
   gap: 20px;
 }
 .display {
   width: 80%;
   height: 200px;
-  background-color: lightgray;
+  background-color: antiquewhite;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 24px;
 }
 .clear-btn{
   width: 100px;
@@ -26,10 +27,14 @@
   flex-wrap:wrap;
   justify-content: space-evenlys;
 }
-
 .op-btn {
   background-color: antiquewhite;
   flex-basis: 20%;
   height: 40px;
   border-radius: 5px;
+  border: 1px solid burlywood;
+}
+
+.op {
+  background-color: peachpuff;
 }
