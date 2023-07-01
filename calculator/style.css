@@ -3,9 +3,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: burlywood;
+  background-color: sandybrown;
   padding: 30px;
   gap: 20px;
+  border-radius: 3px;
 }
 .display {
   width: 80%;
@@ -15,11 +16,14 @@
   align-items: center;
   justify-content: center;
   font-size: 24px;
+  border-radius: 5px;
 }
 .clear-btn{
   width: 100px;
   padding: 5px;
   border-radius: 20px;
+  border: 2px solid burlywood;
+  background-color: peachpuff;
 }
 .container{
   width: 80%;
