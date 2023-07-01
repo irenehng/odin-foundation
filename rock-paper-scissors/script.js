@@ -4,6 +4,9 @@ function getComputerChoice() {
   return choices[index];
 }
 
+let playerScore = 0;
+let computerScore = 0;
+
 function playOneRound(playerSelection, computerSelection) {
   const winCombos = {
     'rock': 'scissors',
@@ -11,40 +14,34 @@ function playOneRound(playerSelection, computerSelection) {
     'scissors': 'paper'
   };
   playerSelection = playerSelection.toLowerCase();
-  console.log(playerSelection,computerSelection)
   if (playerSelection == computerSelection) {
+    playerScore ++;
+    computerScore++;
     return "It's a tie!";
   } else if (winCombos[playerSelection] == computerSelection) {
+    playerScore++;
     return `You win! ${playerSelection} beats ${computerSelection}`;
   } else {
+    computerScore++;
     return `You lose! ${computerSelection} beats ${playerSelection}`;
   }
 }
 
-function game() {
-  let playerScore = 0;
-  let computerScore = 0;
-  for (var i=0; i<5; i++) {
-    let playerSelection = prompt("Rock, Paper, or Scissors?");
-    let computerSelection = getComputerChoice();
-    let result = playOneRound(playerSelection, computerSelection);
-    console.log(result);
-    if (result.includes("You win")) {
-      playerScore++;
-    } else if (result.includes("You lose")) {
-      computerScore++;
-    } else {
-      playerScore++;
-      computerScore++;
-    }
-  }
-  if (playerScore>computerScore) {
-    console.log(`You won the game with ${playerScore} points!`);
-  } else if (playerScore<computerScore) {
-    console.log(`You lost the game with ${playerScore} points`);
-  } else {
-    console.log("It's a tie overall!")
-  }
-}
+const buttons = document.querySelectorAll("button");
+const result = document.querySelector("div.result");
+const ps = document.querySelector(".player-score");
+const cs = document.querySelector(".comp-score");
+buttons.forEach(button => button.addEventListener("click", 
+function() {
+  result.textContent = playOneRound(this.classList[0], getComputerChoice());
+    ps.textContent = `Player: ${playerScore}/5 points`;
+    cs.textContent = `Computer: ${computerScore}/5 points`;
+  if (playerScore == 5 && playerScore > computerScore) {
+    result.textContent = "You won the game!";
+  } else if (computerScore == 5 && computerScore > playerScore) {
+    result.textContent = "Computer won the game!";
+  } else if (playerScore == computerScore && playerScore == 5) {
+    result.textContent = "Both of you won the game!";
+}}));
 
-game()
+
