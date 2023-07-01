@@ -38,15 +38,6 @@ let opButtons = document.querySelectorAll(".op-btn");
 let display = document.querySelector(".display-text");
 let seq = [];
 let currentNumber = "";
-// opButtons.forEach(button => {button.addEventListener("click", () => {
-//   if (button.id === "=" && seq.length % 2 == 1) {
-//     display.textContent = calculateResult(seq);
-//     seq = [];
-//   } else {
-//     seq.push(button.textContent);
-//     display.textContent = seq.join(" ");
-//   }
-// })})
 
 function calculateResult(expression) {
   let result = parseFloat(expression[0], 10);  // Convert the first token to an integer
@@ -90,6 +81,7 @@ opButtons.forEach(button => {
 function clear() {
   seq = [];
   display.textContent = "";
+  currentNumber = "";
 }
 clearButton = document.querySelector(".clear-btn");
 clearButton.addEventListener("click", () => {
