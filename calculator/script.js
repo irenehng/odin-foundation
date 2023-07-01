@@ -37,15 +37,16 @@ function operate (left, operator, right) {
 let opButtons = document.querySelectorAll(".op-btn");
 let display = document.querySelector(".display-text");
 let seq = [];
-opButtons.forEach(button => {button.addEventListener("click", () => {
-  if (button.id === "=" && seq.length % 2 == 1) {
-    display.textContent = calculateResult(seq);
-    seq = [];
-  } else {
-    seq.push(button.textContent);
-    display.textContent = seq.join(" ");
-  }
-})})
+let currentNumber = "";
+// opButtons.forEach(button => {button.addEventListener("click", () => {
+//   if (button.id === "=" && seq.length % 2 == 1) {
+//     display.textContent = calculateResult(seq);
+//     seq = [];
+//   } else {
+//     seq.push(button.textContent);
+//     display.textContent = seq.join(" ");
+//   }
+// })})
 
 function calculateResult(expression) {
   let result = parseInt(expression[0], 10);  // Convert the first token to an integer
@@ -56,6 +57,27 @@ function calculateResult(expression) {
     result = operate(result, operator, operand);}
   return result;
 }
+
+opButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    if (button.id === "=" && seq.length % 2 == 0) {
+      seq.push(currentNumber);
+      display.textContent = calculateResult(seq);
+      seq = [];
+      currentNumber = "";
+    } else {
+      if (parseInt(button.textContent, 10) >= 0) {
+        currentNumber += button.textContent;
+        display.textContent = currentNumber;
+      } else {
+        seq.push(currentNumber);
+        seq.push(button.textContent);
+        display.textContent = seq.join(" ");
+        currentNumber = "";
+      }
+    }
+  });
+});
 
 function clear() {
   seq = [];
